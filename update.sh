@@ -47,10 +47,10 @@ if [ -f $JsonOutFile ]
 then
 	rm $JsonOutFile
 fi
-echo "$JsonTxt" >> $JsonOutFile #double qouting the variable is needed to preserve line breaks
+echo "$JsonTxt" >> $JsonOutFile #double quoting the variable is needed to preserve line breaks
 AwsUpdStat="$(aws route53 change-resource-record-sets --hosted-zone-id "$AwsZoneId" --change-batch file://"$JsonOutFile" --output text)"
 updlog "$AwsUpdStat"
 rm $JsonOutFile
-#to check the status of the change exetcute this with the proper changeId
+#to check the status of the change execute this with the proper changeId
 #aws route53 get-change --id "FullChangeIdHere" --output text
 updlog "$MsgEnd"
